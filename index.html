@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Tales</title>
+<meta name="description" content="Campus Tales is a family of student-written wikis about college life: campus history, traditions, games, people and places. Tiger Tales (Clemson) and TarHeel Tales (UNC).">
+<meta property="og:title" content="Campus Tales">
+<meta property="og:description" content="Student-written wikis about the history, traditions and people of every campus.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://campustaleswiki.com/">
+<meta name="theme-color" content="#1d2340">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d2340'/%3E%3Cpath d='M18 20h28v6H35v20h-6V26H18z' fill='%23f6efe2'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink: #1d2340;
+    --ink-soft: #4a5070;
+    --paper: #f6efe2;
+    --card: #fffaf1;
+    --line: #e2d6c0;
+    --clemson: #f56600;
+    --clemson-deep: #522d80;
+    --unc: #7bafd4;
+    --unc-deep: #13294b;
+    --accent: #c2410c;
+    --radius: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #f1ebdf;
+      --ink-soft: #b9b3a6;
+      --paper: #14172a;
+      --card: #1c2038;
+      --line: #2e3352;
+      --accent: #fb923c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #f1ebdf; --ink-soft: #b9b3a6; --paper: #14172a; --card: #1c2038; --line: #2e3352; --accent: #fb923c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header.top { padding: 22px 0; }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 9px; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-size: 18px; }
+  nav.top-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
+  nav.top-links a { text-decoration: none; color: var(--ink-soft); }
+  nav.top-links a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 56px 0 40px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .hero h1 { font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; letter-spacing: -0.025em; margin: 0 0 20px; max-width: 14ch; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p.lede { font-size: clamp(17px, 2.2vw, 20px); color: var(--ink-soft); max-width: 58ch; margin: 0 0 28px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid var(--ink); transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+
+  /* Schools */
+  section { padding: 44px 0; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.02em; margin: 0; }
+  .section-head p { color: var(--ink-soft); margin: 0; }
+  .schools { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; }
+  .school {
+    position: relative; overflow: hidden; border-radius: var(--radius); padding: 28px 26px 26px;
+    color: #fff; text-decoration: none; min-height: 260px; display: flex; flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .school:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(0,0,0,.45); }
+  .school.clemson { background: linear-gradient(140deg, var(--clemson) 0%, #d45500 55%, var(--clemson-deep) 140%); }
+  .school.unc { background: linear-gradient(140deg, var(--unc) 0%, #4f8fbf 55%, var(--unc-deep) 135%); }
+  .school .status { align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; background: rgba(255,255,255,.22); padding: 5px 11px; border-radius: 999px; margin-bottom: auto; }
+  .school .status.live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #b8ffb8; margin-right: 7px; vertical-align: 1px; box-shadow: 0 0 0 3px rgba(184,255,184,.3); }
+  .school h3 { font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: 34px; letter-spacing: -0.02em; margin: 34px 0 4px; line-height: 1.05; }
+  .school .school-name { font-weight: 500; opacity: .9; margin-bottom: 14px; }
+  .school .go { font-weight: 600; font-size: 15px; }
+  .school .bigletter { position: absolute; right: -10px; bottom: -48px; font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: 210px; line-height: 1; opacity: .13; pointer-events: none; }
+  .school.next { background: var(--card); color: var(--ink); border: 2px dashed var(--line); }
+  .school.next .status { background: var(--paper); color: var(--ink-soft); }
+  .school.next:hover { box-shadow: none; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .feature .icon { font-size: 26px; margin-bottom: 10px; }
+  .feature h4 { margin: 0 0 6px; font-size: 18px; }
+  .feature p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+  /* Yearbook band */
+  .band { background: var(--ink); color: var(--paper); border-radius: 26px; padding: 40px 34px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; }
+  .band h2 { color: var(--paper); }
+  .band p { color: color-mix(in srgb, var(--paper) 78%, transparent); margin: 12px 0 0; }
+  .band .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .band .chip { border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); padding: 8px 14px; border-radius: 999px; font-size: 14px; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .band { background: #262b4a; } }
+  :root[data-theme="dark"] .band { background: #262b4a; }
+
+  /* Footer */
+  footer { padding: 46px 0 60px; color: var(--ink-soft); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px; }
+  footer a { color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    nav.top-links { display: none; }
+    .hero { padding-top: 30px; }
+    .band { grid-template-columns: 1fr; padding: 30px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-mark">T</span>Campus Tales</a>
+    <nav class="top-links">
+      <a href="#schools">Schools</a>
+      <a href="#inside">What's inside</a>
+      <a href="#yearbook">Yearbook</a>
+      <a href="#next">Add your school</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Student-written college wikis</span>
+      <h1>Every campus has <em>stories.</em> Here's where they live.</h1>
+      <p class="lede">Campus Tales is a family of wikis written by students and alumni: the history, traditions, buildings, bars, games and people that make each school what it is. Pick your campus.</p>
+      <div class="btn-row">
+        <a class="btn solid" href="#schools">Find your school &rarr;</a>
+        <a class="btn" href="#inside">What's on each wiki</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="schools">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The schools</h2>
+        <p>Each wiki is its own site, run for that campus.</p>
+      </div>
+      <div class="schools">
+        <a class="school clemson" href="https://tigertalesclemson.com/">
+          <span class="status live">Live</span>
+          <h3>Tiger Tales</h3>
+          <div class="school-name">Clemson University</div>
+          <span class="go">Visit tigertalesclemson.com &rarr;</span>
+          <span class="bigletter" aria-hidden="true">C</span>
+        </a>
+        <a class="school unc" href="https://tarheeltalesunc.com/">
+          <span class="status">Coming soon</span>
+          <h3>TarHeel Tales</h3>
+          <div class="school-name">UNC Chapel Hill</div>
+          <span class="go">tarheeltalesunc.com &rarr;</span>
+          <span class="bigletter" aria-hidden="true">N</span>
+        </a>
+        <a class="school next" href="#next">
+          <span class="status">Your school?</span>
+          <h3>Next up</h3>
+          <div class="school-name">We're adding campuses one at a time.</div>
+          <span class="go">Bring Campus Tales to your school &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>On every Campus Tales wiki</h2>
+        <p>Same tools, different campus.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><div class="icon">📜</div><h4>Campus history</h4><p>Buildings, eras, legends and a "Today in history" entry for every day of the year.</p></div>
+        <div class="feature"><div class="icon">🎉</div><h4>Traditions &amp; places</h4><p>Gameday rituals, Greek life, student groups, and the restaurants and bars everyone remembers.</p></div>
+        <div class="feature"><div class="icon">🧩</div><h4>Five daily games</h4><p>A campus Wordle, Connections, Guess the person, Timeline and Trivia, with leaderboards.</p></div>
+        <div class="feature"><div class="icon">🏟️</div><h4>Gameday</h4><p>Live scores, this week's schedule and recent results across varsity sports.</p></div>
+        <div class="feature"><div class="icon">📖</div><h4>The Yearbook</h4><p>Make a page about your own time on campus, and let friends sign it.</p></div>
+        <div class="feature"><div class="icon">✍️</div><h4>Written by students</h4><p>Anyone with an account can add and improve pages. Edits are reviewed before they go live.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="yearbook">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>The Yearbook is going everywhere.</h2>
+          <p>A Yearbook app for every school is on the way: your page, your class, notes from friends, across generations of students. Clemson gets it first.</p>
+        </div>
+        <div class="chips">
+          <span class="chip">Clemson beta · early 2027</span>
+          <span class="chip">More schools · spring 2027</span>
+          <span class="chip">Free to join</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="next">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Want your school next?</h2>
+      </div>
+      <div class="features">
+        <div class="feature" style="grid-column: 1 / -1;">
+          <p style="font-size:17px;color:var(--ink);margin-bottom:16px;">We add schools where there are students ready to help write the first pages. Tell us your school and how you'd like to help.</p>
+          <div class="btn-row">
+            <a class="btn solid" id="contact-btn" href="mailto:parker.foodman@gmail.com?subject=Campus%20Tales%20for%20my%20school">Email us about your school</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Campus Tales. Independent, student-run wikis; not affiliated with or endorsed by any university.</span>
+    <span><a href="https://tigertalesclemson.com/">Tiger Tales</a> · <a href="https://tarheeltalesunc.com/">TarHeel Tales</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
